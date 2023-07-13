@@ -77,3 +77,8 @@ class Ratings(models.Model):
     dislike  = models.BooleanField(default=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.ForeignKey(Articles, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        if self.like:
+            return f"{self.owner.username} liked {self.article.title[0:15]}"
+        return f"{self.owner.username} disliked {self.article.title[0:15]}"
